@@ -30,7 +30,7 @@ export default function Home() {
        localStorage.clear()
        dispatch(fetchList())
     }
-    const markCompleteClick = (todo) => {
+    const markCompleteClick = (todos) => {
         dispatch(markComplete({ id: todo.id, todo: todo.todo, complete: todo.complete, dateCreated: todo.dateCreated, days: todo.days }))
         dispatch(fetchList())
     }
@@ -87,7 +87,7 @@ export default function Home() {
                                 </Button>,
                             ]}
                         >
-                            <Avatar style={AvatarStyle}>{todo.days}</Avatar> {todo.todo}
+                            <Avatar style={AvatarStyle}>{todo.days}</Avatar> {todo.todo} {}
                         </List.Item>
                     )}
                 />

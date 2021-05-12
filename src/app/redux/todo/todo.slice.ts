@@ -23,10 +23,11 @@ export const fetchList = createAsyncThunk("todoList/fetchList", async () => {
     return await todoService.GetDays(todo)
 
 })
-export const addTodo =  createAsyncThunk("todoList/removeTodo", async (todoData) => {
+export const addTodo =  createAsyncThunk("todoList/addTodo", async (todoData) => {
     const todoRepo = new TodoRepositoryImpl()
     const todoService = new TodoServiceImpl(todoRepo)
-    return await todoService.AddTodo(todoData)
+    const todo = await todoService.AddTodo(todoData)
+    return await todoService.AddTodo(todo)
 })
 export const removeTodo = createAsyncThunk("todoList/removeTodo", async (todoData) => {
     const todoRepo = new TodoRepositoryImpl()
@@ -42,9 +43,6 @@ export const editTodo = createAsyncThunk("todoList/editTodo", async (todoData) =
 export const markComplete = createAsyncThunk("todoList/markTodo", async (todoData) => {
     const todoRepo = new TodoRepositoryImpl()
     const todoService = new TodoServiceImpl(todoRepo)
-    console.log("------------------------------")
-    console.log(todoData)
-    console.log("------------------------------")
     const todo = await todoService.MarkCompleteTodo(todoData)
     return await todoService.GetDays(todo)
 })
@@ -81,6 +79,64 @@ export const todoSlice = createSlice({
                 loading: false,
             }
         })
+        builder.addCase(addTodo.fulfilled, (state, action) => {
+            return {
+                ...state,
+                todo: action.payload,
+                loading: false,
+            }
+        })
+        builder.addCase(addTodo.pending, (state) => {
+            return {
+                ...state,
+                loading: true,
+            }
+        })
+        builder.addCase(addTodo.rejected, (state) => {
+            return {
+                ...state,
+                loading: false,
+            }
+        })
+        builder.addCase(removeTodo.fulfilled, (state, action) => {
+            return {
+                ...state,
+                todo: action.payload,
+                loading: false,
+            }
+        })
+        builder.addCase(removeTodo.pending, (state) => {
+            return {
+                ...state,
+                loading: true,
+            }
+        })
+        builder.addCase(removeTodo.rejected, (state) => {
+            return {
+                ...state,
+                loading: false,
+            }
+        })
+        builder.addCase(editTodo.fulfilled, (state, action) => {
+            return {
+                ...state,
+                todo: action.payload,
+                loading: false,
+            }
+        })
+        builder.addCase(editTodo.pending, (state) => {
+            return {
+                ...state,
+                loading: true,
+            }
+        })
+        builder.addCase(editTodo.rejected, (state) => {
+            return {
+                ...state,
+                loading: false,
+            }
+        })
+
     },
 })
 

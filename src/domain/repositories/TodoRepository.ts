@@ -2,9 +2,9 @@ import { Todo } from "../entities/Todo"
 
 export interface TodoRepository {
     GetTodo(): any
-    RemoveTodo(todo: any): any
-    AddTodo(todo: any): any
-    EditTodo(todo: any): any
-    MarkCompleteTodo(todo: any): any
-    GetDays(todo: any): any
+    RemoveTodo(todo: Todo): Todo
+    AddTodo(todo: Todo): Todo
+    EditTodo(todo: Todo): Todo
+    MarkCompleteTodo(todo: Todo): Todo
+    GetDays(todo: Todo): Todo
 }

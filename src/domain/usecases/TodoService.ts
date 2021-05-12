@@ -42,6 +42,7 @@ export class TodoServiceImpl {
         const todos_f = [{}]
         todo.map((to: any) => {
             if (to) {
+
                 const date_now = new Date()
                 const today_date = date_now.getFullYear() + "-" + (date_now.getMonth() + 1) + "-" + date_now.getDate()
                 const date_now_val = new Date(today_date)
@@ -57,7 +58,6 @@ export class TodoServiceImpl {
                 })
             }
         })
-
         return this.todoRepo.GetDays(todos_f)
     }
 }
