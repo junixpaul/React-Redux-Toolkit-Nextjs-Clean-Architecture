@@ -51,13 +51,6 @@ export const todoSlice = createSlice({
     // `createSlice` will infer the state type from the `initialState` argument
     initialState,
     reducers: {
-        addTodo(state, action){
-            return {
-                ...state,
-                todo: action.payload,
-            }
-
-        }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchList.fulfilled, (state, action) => {
